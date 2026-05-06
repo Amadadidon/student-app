@@ -1,7 +1,7 @@
-const SUPABASE_URL = "YOUR_URL";
-const SUPABASE_KEY = "YOUR_KEY";
+const SUPABASE_URL = "https://tgyewsvyxlhboupdcndv.supabase.co";
+const SUPABASE_KEY = "sb_publishable_h9zdEYrCrQ32_VF4XWX_yA_FLrlSkzK";
 
-const supabase = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
+const client = supabase.createClient(SUPABASE_URL, SUPABASE_KEY);
 
 let loggedIn = false;
 
@@ -9,12 +9,12 @@ let loggedIn = false;
 async function login() {
     const pass = document.getElementById("password").value;
 
-    let { data } = await supabase
+    let { data, error } = await client
         .from('admin')
         .select('*')
         .eq('password', pass);
 
-    if (data.length > 0) {
+    if (data && data.length > 0) {
         loggedIn = true;
         document.getElementById("dashboard").style.display = "block";
         alert("Welcome Admin");
@@ -25,7 +25,7 @@ async function login() {
 
 // LOAD CLASS
 async function loadClass(cls) {
-    let { data } = await supabase
+    let { data, error } = await client
         .from('students')
         .select('*')
         .eq('class', cls);
@@ -49,7 +49,7 @@ async function update(id) {
     const name = document.getElementById("name-" + id).value;
     const marks = document.getElementById("marks-" + id).value;
 
-    await supabase
+    await client
         .from('students')
         .update({ name, marks })
         .eq('id', id);
