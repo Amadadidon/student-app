@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Marks</title>
+</head>
+<body>
+
+<h2>Admin Login</h2>
+<input type="password" id="password">
+<button onclick="login()">Login</button>
+
+<div id="dashboard" style="display:none;">
+    <h2>Select Class</h2>
+
+    <button onclick="loadClass('Class 1')">Class 1</button>
+    <button onclick="loadClass('Class 2')">Class 2</button>
+
+    <div id="students"></div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js"></script>
+<script src="script.js"></script>
+
+</body>
+</html>
